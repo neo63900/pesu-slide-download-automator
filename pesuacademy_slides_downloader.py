@@ -25,7 +25,9 @@ def select_course(page):
     page.wait_for_selector("span.menu-name:has-text('My Courses')", timeout=15000)
     page.click("span.menu-name:has-text('My Courses')")
     page.wait_for_selector("table.table.table-hover", timeout=15000)
-    no_content = page.locator("h2:text('No subjects found')")
+    no_content = page.locator(
+            "h2:text('No subjects found')"
+        )
 
     rows = page.locator("table.table.table-hover tbody tr")
     count = rows.count()
@@ -50,6 +52,7 @@ def select_course(page):
     print(f"Opening: {course_name}")
 
     return course_name
+
 
 # 3. SELECT UNIT
 def select_unit(page):
@@ -151,7 +154,9 @@ def navigate_through_pages(page, course_name, unit_name, downloaded_urls):
         slides_tab.click()
         page.wait_for_timeout(600)
 
-        no_slides = page.locator("h2:text('No Slides Content to Display')")
+        no_slides = page.locator(
+            "h2:text('No Slides Content to Display')"
+        )
 
         if no_slides.is_visible():
             print("No slides available. Skipping download.")
@@ -169,6 +174,7 @@ def navigate_through_pages(page, course_name, unit_name, downloaded_urls):
 
     page.wait_for_load_state("networkidle")
     page.wait_for_timeout(500)
+
 
 def main():
     if os.path.exists(ENV_FILE):
