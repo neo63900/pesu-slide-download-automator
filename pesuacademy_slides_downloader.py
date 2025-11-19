@@ -45,33 +45,6 @@ def select_course(page):
 
     return course_name
 
-# 3. SELECT UNIT
-def select_unit(page):
-    page.wait_for_selector("#courselistunit li", timeout=15000)
-
-    units = page.locator("#courselistunit li a")
-    unit_count = units.count()
-
-    names = []
-    for i in range(unit_count):
-        names.append(units.nth(i).inner_text().strip())
-
-    print("\nAvailable Units:")
-    for index, name in enumerate(names, 1):
-        print(f"{index}. {name}")
-
-    choice = int(input("\nEnter unit number to open: "))
-    selected_unit = units.nth(choice - 1)
-
-    unit_name = sanitize(names[choice - 1])
-    selected_unit.click()
-
-    print(f"Opening {unit_name}...")
-    page.wait_for_load_state("networkidle")
-    page.wait_for_timeout(800)
-
-    return unit_name
-
 # 4. CLICK FIRST SLIDE
 def open_first_slide(page):
     page.wait_for_selector("span.pesu-icon-presentation-graphs", timeout=15000)
@@ -87,7 +60,6 @@ def download_slides(page, course_name, unit_name, downloaded_urls):
 
     slide_links = page.locator(".link-preview a")
     slide_count = slide_links.count()
-
     print(f"\nFound {slide_count} files.")
 
     folder = f"{course_name} {unit_name}"
@@ -112,14 +84,12 @@ def download_slides(page, course_name, unit_name, downloaded_urls):
             pdf_url = "https://www.pesuacademy.com" + url
             pdf_url = pdf_url.split("#")[0]
 
-            # Skip duplicates (in-memory only)
             if pdf_url in downloaded_urls:
                 print(f"Skipping already downloaded: {pdf_url}")
                 continue
 
             print(f"\nDownloading: {pdf_url}")
             response = page.request.get(pdf_url)
-
             if response.status != 200:
                 print(f"Failed ({response.status})")
                 continue
@@ -131,18 +101,16 @@ def download_slides(page, course_name, unit_name, downloaded_urls):
                 f.write(response.body())
 
             print(f"Saved → {filepath}")
-
             downloaded_urls.add(pdf_url)
             next_number += 1
             page.wait_for_timeout(300)
 
-# 6. PAGE NAVIGATION + SLIDE DOWNLOAD ON EVERY PAGE
+# 6. PAGE NAVIGATION + SLIDE DOWNLOAD
 def navigate_through_pages(page, course_name, unit_name, downloaded_urls):
     while True:
         page.wait_for_selector(".coursecontent-navigation-area a.pull-right", timeout=15000)
         next_button = page.locator(".coursecontent-navigation-area a.pull-right")
         label = next_button.inner_text().strip()
-
         print("\nCurrent button:", label)
 
         # Open slides tab
@@ -159,7 +127,6 @@ def navigate_through_pages(page, course_name, unit_name, downloaded_urls):
         else:
             download_slides(page, course_name, unit_name, downloaded_urls)
 
-        # Stop when final page
         if "Back to Units" in label:
             print("Reached 'Back to Units'. Stopping navigation.")
             break
@@ -175,12 +142,13 @@ def navigate_through_pages(page, course_name, unit_name, downloaded_urls):
 # MAIN
 def main():
     username = input("Enter Username: ")
-    password = getpass.getpass("Enter Password: ") 
+    password = getpass.getpass("Enter Password: ")
 
     with sync_playwright() as p:
-        browser = p.chromium.launch(headless=False)
+        browser = p.chromium.launch(headless=True)
         context = browser.new_context()
         page = context.new_page()
+        page.route("**/*", lambda route: route.abort() if route.request.resource_type in ["image", "media", "font"] else route.continue_())
 
         login(page, username, password)
         course_name = select_course(page)
@@ -189,7 +157,7 @@ def main():
         download_slides(page, course_name, unit_name, downloaded_urls)
         navigate_through_pages(page, course_name, unit_name, downloaded_urls)
 
-        page.wait_for_timeout(4000)
+        page.wait_for_timeout(2000)
 
 if __name__ == "__main__":
     main()
