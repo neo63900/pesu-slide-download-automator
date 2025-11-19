@@ -150,7 +150,14 @@ def navigate_through_pages(page, course_name, unit_name, downloaded_urls):
         slides_tab.click()
         page.wait_for_timeout(600)
 
-        download_slides(page, course_name, unit_name, downloaded_urls)
+        no_slides = page.locator(
+            "h2:text('No Slides Content to Display')"
+        )
+
+        if no_slides.is_visible():
+            print("No slides available. Skipping download.")
+        else:
+            download_slides(page, course_name, unit_name, downloaded_urls)
 
         # Stop when final page
         if "Back to Units" in label:
