@@ -24,9 +24,31 @@ def main():
 
         # 3. Click login button
         page.click("button.btn.btn-lg.btn-primary.btn-block")
-
-        # 4. Wait for logged-in UI to load
         page.wait_for_load_state("networkidle")
+
+        # 5. Click "My Courses"
+        page.click("span.menu-name:has-text('My Courses')")
+        page.wait_for_selector("table.table.table-hover")
+
+        # 6. Extract Course Titles
+        rows = page.locator("table.table.table-hover tbody tr")
+        count = rows.count()
+
+        courses = []
+        for i in range(count):
+            title = rows.nth(i).locator("td:nth-child(2)").inner_text().strip()
+            courses.append(title)
+
+        # 7. User input to select course
+        print("\nAvailable Courses:")
+        for index, course in enumerate(courses, 1):
+            print(f"{index}. {course}")
+        choice = int(input("\nEnter course number to open: "))
+        selected_row = rows.nth(choice - 1)
+        selected_row.click()
+        course_name = sanitize(courses[choice - 1])
+
+        print(f"Opening: {course_name}")
 
         # Keep window open a moment
         page.wait_for_timeout(5000)
