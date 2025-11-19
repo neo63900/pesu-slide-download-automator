@@ -69,6 +69,60 @@ def select_unit(page):
 
     return unit_name
 
+# 4. CLICK FIRST SLIDE
+def open_first_slide(page):
+    page.wait_for_selector("span.pesu-icon-presentation-graphs")
+    page.locator("a:has(span.pesu-icon-presentation-graphs)").first.click()
+    print("Clicked first slide entry.")
+
+    
+# 5. DOWNLOAD SLIDE
+def download_slides(page, course_name, unit_name):
+    page.wait_for_selector("a:has(span.glyphicon-eye-open)")
+
+    slide_links = page.locator("a:has(span.glyphicon-eye-open)")
+    slide_count = slide_links.count()
+
+    print(f"\nFound {slide_count} slides.")
+
+    folder = f"{course_name} {unit_name}"
+    os.makedirs(folder, exist_ok=True)
+    existing = [
+        int(f.split(".")[0]) for f in os.listdir(folder)
+        if f.split(".")[0].isdigit()
+    ]
+    next_number = max(existing) + 1 if existing else 101
+
+    for i in range(slide_count):
+        link = slide_links.nth(i)
+        onclick = link.get_attribute("onclick")
+
+        match = re.search(r"loadIframe\('([^']+)", onclick)
+        if not match:
+            print("Could not extract URL.")
+            continue
+
+        pdf_url = "https://www.pesuacademy.com" + match.group(1)
+        pdf_url = pdf_url.split("#")[0]
+
+        print(f"\nDownloading: {pdf_url}")
+        response = page.request.get(pdf_url)
+
+        if response.status != 200:
+            print(f"Failed ({response.status})")
+            continue
+
+        filename = f"{next_number}.pdf"
+        filepath = os.path.join(folder, filename)
+
+        with open(filepath, "wb") as f:
+            f.write(response.body())
+
+        print(f"Saved → {filepath}")
+        next_number += 1
+
+    print("\nFirst slide downloaded!")
+
 
 def main():
     username = input("Enter Username: ")
@@ -82,7 +136,9 @@ def main():
         login(page, username, password)
         course_name = select_course(page)
         unit_name = select_unit(page)
-
+        open_first_slide(page)
+        download_slides(page, course_name, unit_name)
+        
         page.wait_for_timeout(5000)
 
 
