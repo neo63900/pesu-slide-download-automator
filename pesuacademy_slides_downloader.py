@@ -1,6 +1,7 @@
 from playwright.sync_api import sync_playwright
 import os
 import re
+import getpass
 
 downloaded_urls = set()
 
@@ -167,7 +168,7 @@ def navigate_through_pages(page, course_name, unit_name, downloaded_urls):
 # MAIN
 def main():
     username = input("Enter Username: ")
-    password = input("Enter Password: ")
+    password = getpass.getpass("Enter Password: ") 
 
     with sync_playwright() as p:
         browser = p.chromium.launch(headless=False)
